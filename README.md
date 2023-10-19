@@ -1,66 +1,27 @@
-# Front-end Choose Your Own Adventure Take-Home
+# React + TypeScript + Vite
 
-Design and build a comments feed that displays all comments and notifies a user in real-time when new comments are added.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Here is the data schema for a Comment:
-* id: INTEGER
-* name: TEXT
-* created: DATETIME
-* message: TEXT
+Currently, two official plugins are available:
 
-Here are the API endpoints:
-* Create a comment: /createComment (POST)
-* Retrieve all comments: /getComments (GET)
-* Retrieve a comment: /getComment (GET)
-* Delete all comments: /deleteComments (DELETE)
-  * This is useful for purging data
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-This is a basic wireframe, you can change the layout. While you won't be screened as a product designer, make sure you build a good user experience. If you decide to use a third-party design system, be prepared to discuss your decision.
+## Expanding the ESLint configuration
 
-![Basic wireframe](wireframe.png)
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-Please write unit tests and handle errors where you see fit.
+- Configure the top-level `parserOptions` property like this:
 
-## Engineering Style
-
-We do not expect you to have expertise in all the topics that encapsulate front-end web development. We recognize that some folks are specialists and others are generalists!
-
-### Specialist
-
-If there's a particular topic you enjoy, you can focus your assignment solution on that!
-
-Some examples include:
-* Performance optimizations
-* Accessibility
-* Integration testing
-
-### Generalist
-
-If you're a generalist, you can focus more on building the minimum viable product described above with the wireframe!
-
-## Interview Details
-
-We have already set up an API client for a Node Express server that stores comments in SQLite.
-
-You have the option of doing the assignment with or without a front-end JS framework.
-
-If you decide to use a framework, we recommend the following boilerplates:
-* [facebook/create-react-app](https://github.com/facebook/create-react-app)
-* [vuejs/vue-cli](https://github.com/vuejs/vue-cli)
-* [angular/angular-cli](https://github.com/angular/angular-cli)
-* [ember-cli/ember-cli](https://github.com/ember-cli/ember-cli)
-
-Be prepared to have a discussion about your implementation. Here are some example discussion questions:
-* How can you optimize fetching new comments in real-time?
-* Are there any restrictions we should place on the comment input?
-
-We recommend spending up to four hours on this assignment. If you don't get every piece you hoped completed done in the timeframe, that's alright! We'll be having an hour long discussion on your thought processes and where you might spend more time, and that discussion is a key part of our evaluation!
-
-## Usage
-
-### Run in Development
-
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
 ```
-$ npm install
-$ npm run dev
-```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
