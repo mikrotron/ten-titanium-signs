@@ -1,4 +1,3 @@
-import React from "react";
 import CommentForm from "@/components/CommentForm/CommentForm";
 import CommentFeed from "@/components/CommentFeed/CommentFeed";
 import useComments from "@/hooks/useComments";

@@ -1,4 +1,3 @@
-import React from "react";
 import Comment from "@/components/Comment/Comment";
 import { CommentType } from "@/helpers/types";
 import useComments from "@/hooks/useComments";
@@ -10,7 +9,7 @@ const CommentFeed = (): JSX.Element => {
   const isNew = useNewComment(comments?.length);
 
   return (
-    <div role="feed" aria-busy={isLoading} aria-label="Comments Feed">
+    <div role="feed" aria-busy={isLoading} aria-label="comments feed">
       {error && (
         <div aria-atomic="true" aria-live="polite">
           <h2>Uh oh❗️</h2>
