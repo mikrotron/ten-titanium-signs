@@ -31,6 +31,12 @@ app.post("/createComment", function (request, response) {
   });
 });
 
+app.post("/createComments", function (request, response) {
+  comment.createComments().then((result) => {
+    response.send(result);
+  });
+});
+
 app.get("/getComment", function (request, response) {
   const { body } = request;
   const { id } = body;
