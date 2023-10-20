@@ -15,6 +15,7 @@ describe("CommentForm", () => {
     expect(messageField).toBeInTheDocument();
     expect(postButton).toBeInTheDocument();
   });
+
   it("calls onSubmit with comment body", () => {
     const handleSubmit = vi.fn();
     render(<CommentForm onSubmit={handleSubmit} />);
@@ -31,5 +32,6 @@ describe("CommentForm", () => {
       name: "John Doe",
       message: "Hello World!",
     });
+    expect(messageField).toHaveValue("");
   });
 });

@@ -7,14 +7,21 @@ interface CommentFormProps {
 }
 
 const CommentForm = ({ onSubmit }: CommentFormProps): JSX.Element => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.target as HTMLFormElement);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const data = new FormData(event.target as HTMLFormElement);
     const comment: CommentType = {} as CommentType;
     for (const [key, value] of data.entries()) {
       comment[key] = String(value);
     }
+
     onSubmit(comment);
+
+    const messageField = (event.target as HTMLFormElement).elements.namedItem(
+      "message"
+    ) as HTMLTextAreaElement;
+    messageField.value = "";
   };
 
   return (
