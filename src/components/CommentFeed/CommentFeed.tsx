@@ -3,17 +3,36 @@ import Comment from "@/components/Comment/Comment";
 import { CommentType } from "@/helpers/types";
 import useComments from "@/hooks/useComments";
 import useNewComment from "@/hooks/useNewComment";
+import { Spinner } from "@/helpers/utility.styles";
 
 const CommentFeed = (): JSX.Element => {
-  const { comments, isLoading } = useComments();
+  const { comments, isLoading, error } = useComments();
   const isNew = useNewComment(comments?.length);
 
   return (
     <div role="feed" aria-busy={isLoading} aria-label="Comments Feed">
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && comments.length === 0 && <p>No comments yet.</p>}
+      {error && (
+        <div aria-atomic="true" aria-live="polite">
+          <h2>Uh oh❗️</h2>
+          <code>{error.message}</code>
+        </div>
+      )}
+
+      {isLoading && (
+        <div aria-atomic="true" aria-live="polite">
+          <Spinner aria-hidden />
+          <em>Loading...</em>
+        </div>
+      )}
+
+      {!isLoading && comments?.length === 0 && (
+        <div aria-atomic="true" aria-live="polite">
+          <em>No comments yet.</em>
+        </div>
+      )}
+
       {!isLoading &&
-        comments.length > 0 &&
+        comments?.length > 0 &&
         [...comments]
           .reverse()
           .map((comment: CommentType, index) => (

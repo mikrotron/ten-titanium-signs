@@ -6,7 +6,7 @@ import { Button } from "../Primatives/Primatives.styles";
 import { ResetStyles, Header, Main, Footer } from "./App.styles";
 
 function App() {
-  const { postData, seedData, purge } = useComments();
+  const { create, seed, purge } = useComments();
 
   return (
     <>
@@ -15,13 +15,13 @@ function App() {
         <h1>🥔 Commentater</h1>
       </Header>
       <Main>
-        <CommentForm onSubmit={postData} />
+        <CommentForm onSubmit={create} />
         <aside>
           <CommentFeed />
         </aside>
       </Main>
       <Footer aria-label="secret utilities">
-        <Button onClick={seedData}>Seed</Button>
+        <Button onClick={seed}>Seed</Button>
         <Button onClick={purge}>Purge</Button>
       </Footer>
     </>

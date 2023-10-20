@@ -1,50 +1,57 @@
 import useSWR from "swr";
-import { enablePolling, pollingInterval } from "@/helpers/constants";
+import {
+  enablePolling,
+  pollingInterval,
+  endpoint,
+  apiHeaders,
+} from "@/helpers/constants";
 import { CommentType } from "@/helpers/types";
 
 interface UseCommentsType {
   comments: CommentType[];
+  create: (comment: CommentType) => Promise<void>;
+  error: Error;
   isLoading: boolean;
-  refresh: () => Promise<CommentType[]>;
-  postData: (comment: CommentType) => Promise<void>;
-  seedData: () => Promise<void>;
   purge: () => Promise<void>;
+  refresh: () => Promise<CommentType[]>;
+  seed: () => Promise<void>;
 }
 
 const useComments = (): UseCommentsType => {
-  const fetchComments = async () => {
-    const response = await fetch("//localhost:3001/getComments");
+  async function fetchComments() {
+    const response = await fetch(endpoint.fetch);
     const data = await response.json();
     return data;
-  };
+  }
 
   const {
     data: comments,
     isLoading,
+    error,
     mutate: refresh,
   } = useSWR("getComments", fetchComments, {
     refreshInterval: enablePolling ? pollingInterval : 0,
   });
 
-  async function postData(comment: CommentType) {
-    await fetch("//localhost:3001/createComment", {
+  async function create(comment: CommentType) {
+    await fetch(endpoint.create, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: apiHeaders,
       body: JSON.stringify(comment),
     });
     refresh();
   }
 
-  async function seedData() {
-    await fetch("//localhost:3001/createComments", {
+  async function seed() {
+    await fetch(endpoint.seed, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: apiHeaders,
     });
     refresh();
   }
 
   async function purge() {
-    await fetch("//localhost:3001/deleteComments", {
+    await fetch(endpoint.purge, {
       method: "DELETE",
     });
     refresh();
@@ -52,11 +59,12 @@ const useComments = (): UseCommentsType => {
 
   return {
     comments,
+    create,
+    error,
     isLoading,
-    refresh,
-    postData,
-    seedData,
     purge,
+    refresh,
+    seed,
   };
 };
 

@@ -20,7 +20,7 @@ const Comment = ({
   isNew = false,
 }: CommmentProps): JSX.Element => {
   return (
-    <CommentContainer aria-atomic="true" aria-live="polite" isNew={isNew}>
+    <CommentContainer aria-atomic="true" aria-live="polite" $isNew={isNew}>
       {isNew && <NewTag>New comment!</NewTag>}
       <CommentBody>{message}</CommentBody>
       <CommentMeta>

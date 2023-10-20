@@ -82,8 +82,8 @@ export const ResetStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1 {
-    margin-top:0;
+  h1, h2 {
+    margin-top: 0;
   }
 
   input,
@@ -91,5 +91,10 @@ export const ResetStyles = createGlobalStyle`
   textarea,
   select {
     font: inherit;
+  }
+
+  code {
+    font-family: ${tokens.fontFamily.code};
+    font-size: ${tokens.fontSize.xs};
   }
 `;

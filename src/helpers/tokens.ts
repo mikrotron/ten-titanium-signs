@@ -34,6 +34,7 @@ const tokens = {
 
   fontFamily: {
     default: "Inter, system-ui, Avenir, Helvetica, Arial, sans-serif",
+    code: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
   },
 
   radius: "6px",

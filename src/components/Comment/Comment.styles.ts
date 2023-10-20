@@ -4,10 +4,10 @@ import tokens from "@/helpers/tokens";
 
 const { space, color } = tokens;
 
-export const CommentContainer = styled.article<{ isNew: boolean }>`
+export const CommentContainer = styled.article<{ $isNew: boolean }>`
   display: block;
-  background-color: ${({ isNew }) =>
-    isNew
+  background-color: ${({ $isNew }) =>
+    $isNew
       ? css`
           ${color.green}cc;
           transition: none;
