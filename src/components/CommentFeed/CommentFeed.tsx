@@ -10,17 +10,19 @@ const CommentFeed = (): JSX.Element => {
 
   return (
     <div role="feed" aria-busy={isLoading} aria-label="Comments Feed">
-      {isLoading
-        ? "Loading..."
-        : [...comments]
-            .reverse()
-            .map((comment: CommentType, index) => (
-              <Comment
-                key={comment.id}
-                isNew={isNew && index === 0}
-                {...comment}
-              />
-            ))}
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && comments.length === 0 && <p>No comments yet.</p>}
+      {!isLoading &&
+        comments.length > 0 &&
+        [...comments]
+          .reverse()
+          .map((comment: CommentType, index) => (
+            <Comment
+              key={comment.id}
+              isNew={isNew && index === 0}
+              {...comment}
+            />
+          ))}
     </div>
   );
 };

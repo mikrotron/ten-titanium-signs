@@ -1,6 +1,11 @@
 import React from "react";
 import formatDate from "@/helpers/formatDate";
-
+import {
+  CommentContainer,
+  CommentMeta,
+  CommentBody,
+  NewTag,
+} from "@/components/Comment/Comment.styles";
 interface CommmentProps {
   name: string;
   message: string;
@@ -15,17 +20,13 @@ const Comment = ({
   isNew = false,
 }: CommmentProps): JSX.Element => {
   return (
-    <article
-      aria-atomic="true"
-      aria-live="polite"
-      style={{ border: "1px solid #888", padding: "0 8px", margin: "8px 0" }}
-    >
-      {isNew && <p>New comment!</p>}
-      <p>{message}</p>
-      <p>
+    <CommentContainer aria-atomic="true" aria-live="polite" isNew={isNew}>
+      {isNew && <NewTag>New comment!</NewTag>}
+      <CommentBody>{message}</CommentBody>
+      <CommentMeta>
         {name} on {formatDate(new Date(created))}
-      </p>
-    </article>
+      </CommentMeta>
+    </CommentContainer>
   );
 };
 

@@ -2,26 +2,28 @@ import React from "react";
 import CommentForm from "@/components/CommentForm/CommentForm";
 import CommentFeed from "@/components/CommentFeed/CommentFeed";
 import useComments from "@/hooks/useComments";
+import { Button } from "../Primatives/Primatives.styles";
+import { ResetStyles, Header, Main, Footer } from "./App.styles";
 
 function App() {
   const { postData, seedData, purge } = useComments();
 
   return (
     <>
-      <header>
-        <h1>Commentator</h1>
-      </header>
-      <main>
+      <ResetStyles />
+      <Header>
+        <h1>🥔 Commentater</h1>
+      </Header>
+      <Main>
         <CommentForm onSubmit={postData} />
-      </main>
-      <aside>
-        <CommentFeed />
-      </aside>
-      <footer>
-        <hr />
-        <button onClick={seedData}>Seed</button>
-        <button onClick={purge}>Purge</button>
-      </footer>
+        <aside>
+          <CommentFeed />
+        </aside>
+      </Main>
+      <Footer aria-label="secret utilities">
+        <Button onClick={seedData}>Seed</Button>
+        <Button onClick={purge}>Purge</Button>
+      </Footer>
     </>
   );
 }

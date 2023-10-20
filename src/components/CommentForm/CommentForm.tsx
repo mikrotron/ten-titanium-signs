@@ -1,5 +1,12 @@
 import React from "react";
-
+import {
+  Input,
+  TextArea,
+  Button,
+  FormField,
+  Label,
+} from "@/components/Primatives/Primatives.styles";
+import { CommentFormContainer } from "./CommentForm.styles";
 import { CommentType } from "@/helpers/types";
 
 interface CommentFormProps {
@@ -25,32 +32,24 @@ const CommentForm = ({ onSubmit }: CommentFormProps): JSX.Element => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <div>
-          <label htmlFor="name">Name</label>
-        </div>
-        <div>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            aria-required
-            autoComplete="name"
-          />
-        </div>
-      </div>
-      <div>
-        <div>
-          <label htmlFor="message">Message</label>
-        </div>
-        <div>
-          <textarea id="message" name="message" required aria-required />
-        </div>
-      </div>
-      <button type="submit">Post</button>
-    </form>
+    <CommentFormContainer onSubmit={handleSubmit}>
+      <FormField>
+        <Label htmlFor="name">Name</Label>
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          required
+          aria-required
+          autoComplete="name"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="message">Message</Label>
+        <TextArea id="message" name="message" required aria-required rows={4} />
+      </FormField>
+      <Button type="submit">Post</Button>
+    </CommentFormContainer>
   );
 };
 
