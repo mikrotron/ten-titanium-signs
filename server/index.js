@@ -8,11 +8,8 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use((req, res, next) => {
-  const allowedOrigins = ["http://localhost:4173", "http://localhost:5173"];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
+  if (req.headers.origin)
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
