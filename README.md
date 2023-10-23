@@ -11,6 +11,11 @@ A comments feed that displays all comments and notifies a user in real-time when
 - To build the project: `npm run build`
 - To run the build: `npm run preview`
 
+### CodeSandbox alternative 
+
+- Project: https://codesandbox.io/p/github/mikrotron/ten-titanium-signs/sandbox
+- UI: https://f62f5y-5173.csb.app/
+
 ## Code notes ✍️
 
 - This project is built with a [Vite](https://vitejs.dev/) template for **React** and **TypeScript**.
