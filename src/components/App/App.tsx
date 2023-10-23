@@ -11,7 +11,7 @@ function App() {
     <>
       <ResetStyles />
       <Header>
-        <h1>🥔 Commentater</h1>
+        <h1>Commentater</h1>
       </Header>
       <Main>
         <CommentForm onSubmit={create} />

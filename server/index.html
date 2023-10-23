@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Commentater Server</title>
+    <script>
+      function tryRedirect(port) {
+        var url = "//" + window.location.hostname + ":" + port;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            window.location.href = url;
+          }
+        };
+        xhr.send();
+      }
+      tryRedirect(4173); // production build
+      tryRedirect(5173); // development build
+    </script>
+  </head>
+
+  <body>
+    <main>
+      <h1>Commentater Server</h1>
+      <p>Server is online.</p>
+    </main>
+  </body>
+</html>
